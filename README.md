@@ -1,1 +1,1 @@
-# CMSC474--Exercise
+Exercises for CISC 474 - Advanced Web Technologies
