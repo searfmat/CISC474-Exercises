@@ -68,7 +68,7 @@
         })
         $('#filterButton').click(function () {
             $.ajax({
-                url: '/api/v1/' + document.getElementById("filterUserNum").value,
+                url: '/api/v1/filterUser?user=' + document.getElementById("filterUserNum").value,
                 type: 'GET',
                 success: function (result) {
                     console.log("Filter Returned");

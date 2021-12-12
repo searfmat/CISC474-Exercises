@@ -11,26 +11,27 @@ app.get('/api/v1/listUsers', function (req, res) {
     });
 });
 
-
-app.get('/api/v1/addUser', function (req, res) {
+app.get('/api/v1/filterUser', function (req, res) {
     fs.readFile(__dirname + "/data/" + "users.json", 'utf8', function (err, data) {
         data = JSON.parse(data);
-        data["user" + req.query["user"]];
-        fs.writeFile(__dirname + "/data/users.json", JSON.stringify(data), err => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-        });
-        console.log(data);
-        res.end(JSON.stringify(data));
+        res.end(JSON.stringify(data["user" + req.query["user"]]));
     });
 });
 
 
-
-
-
+app.post('/api/v1/addUser', function (req, res) {
+        fs.readFile(__dirname + "/data/" + "users.json", 'utf8', function (err, data) {
+            data = JSON.parse(data);
+            data["user" + req.query["user"]] = {name: req.query["name"], password: req.query["password"], profession: req.query["profession"], id: req.query["user"]};
+            fs.writeFile(__dirname + "/data/users.json", JSON.stringify(data), err => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+            });
+            res.end(JSON.stringify(data));
+    });
+});
 
 
 app.delete('/api/v1/deleteUser', function (req, res) {
